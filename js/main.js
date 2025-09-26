@@ -5,7 +5,16 @@ const commentWrapper = document.querySelector('.comment-wrapper');
 
 commentWrapper.style.display = 'none';
 
-showHideBtn.onclick = function() {
+// Handle both click and keyboard events
+showHideBtn.addEventListener('click', toggleComments);
+showHideBtn.addEventListener('keydown', function(e) {
+  if (e.key === 'Enter' || e.key === ' ') {
+    e.preventDefault();
+    toggleComments();
+  }
+});
+
+function toggleComments() {
   let showHideText = showHideBtn.textContent;
   if(showHideText === 'Show comments') {
     showHideBtn.textContent = 'Hide comments';
@@ -14,7 +23,7 @@ showHideBtn.onclick = function() {
     showHideBtn.textContent = 'Show comments';
     commentWrapper.style.display = 'none';
   }
-};
+}
 
 // functionality for adding a new comment via the comments form
 
